@@ -54,11 +54,11 @@ async def start(client, message):
                     InlineKeyboardButton('🕵️‍♂️ Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ', callback_data="topsearch"),
                     InlineKeyboardButton('🔄 sᴜᴘᴘᴏʀᴛ', callback_data='channels')
                 ],[
-                    InlineKeyboardButton('🚨 ʜᴇʟᴘ', callback_data='help'),
+                    InlineKeyboardButton('', callback_data='help'),
                     InlineKeyboardButton('❓ ᴀʙᴏᴜᴛ ', callback_data='about')
                 ],[
                     InlineKeyboardButton('Dᴏɴᴀᴛɪᴏɴ 💰', callback_data='donation'),
-                    InlineKeyboardButton('Eᴀʀɴ ᴍᴏɴᴇʏ..💲', callback_data="shortlink_info")
+                    InlineKeyboardButton('', callback_data="shortlink_info")
                 ],[
                     InlineKeyboardButton('✨ ʙᴜʏ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ : ʀᴇᴍᴏᴠᴇ ᴀᴅꜱ ✨', callback_data="premium_info")
                   ]]
@@ -73,7 +73,7 @@ async def start(client, message):
             gtxt = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 👋"
         else:
             gtxt = "ɢᴏᴏᴅ ɴɪɢʜᴛ 👋"
-        m=await message.reply_text("<i>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <b>Auto filter Bot</b>.\nʜᴏᴘᴇ ʏᴏᴜ'ʀᴇ ᴅᴏɪɴɢ ᴡᴇʟʟ...</i>")
+        m=await message.reply_text("<i>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <b>Movie Search Bot</b>.\nʜᴏᴘᴇ ʏᴏᴜ'ʀᴇ Enjoying...</i>")
         await asyncio.sleep(0.4)
         await m.edit_text("⏳")
         await asyncio.sleep(0.5)
@@ -130,11 +130,11 @@ async def start(client, message):
                     InlineKeyboardButton('🕵️‍♂️ Tᴏᴘ Sᴇᴀʀᴄʜɪɴɢ', callback_data="topsearch"),
                     InlineKeyboardButton('🔄 sᴜᴘᴘᴏʀᴛ', callback_data='channels')
                 ],[
-                    InlineKeyboardButton('🚨 ʜᴇʟᴘ', callback_data='help'),
+                    InlineKeyboardButton('', callback_data='help'),
                     InlineKeyboardButton('❓ ᴀʙᴏᴜᴛ ', callback_data='about')
                 ],[
                     InlineKeyboardButton('Dᴏɴᴀᴛɪᴏɴ 💰', callback_data='donation'),
-                    InlineKeyboardButton('Eᴀʀɴ ᴍᴏɴᴇʏ..💲', callback_data="shortlink_info")
+                    InlineKeyboardButton('', callback_data="shortlink_info")
                 ],[
                     InlineKeyboardButton('✨ ʙᴜʏ ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴ : ʀᴇᴍᴏᴠᴇ ᴀᴅꜱ ✨', callback_data="premium_info")
                   ]]
@@ -149,7 +149,7 @@ async def start(client, message):
             gtxt = "ɢᴏᴏᴅ ᴇᴠᴇɴɪɴɢ 👋"
         else:
             gtxt = "ɢᴏᴏᴅ ɴɪɢʜᴛ 👋"
-        m=await message.reply_text("<i>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <b>Auto filter Bot</b>.\nʜᴏᴘᴇ ʏᴏᴜ'ʀᴇ ᴅᴏɪɴɢ ᴡᴇʟʟ...</i>")
+        m=await message.reply_text("<i>ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ <b>Movie Search Bot</b>.\nʜᴏᴘᴇ ʏᴏᴜ'ʀᴇ Enjoying...</i>")
         await asyncio.sleep(0.4)
         await m.edit_text("⏳")
         await asyncio.sleep(0.5)
