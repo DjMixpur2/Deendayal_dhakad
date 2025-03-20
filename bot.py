@@ -37,53 +37,6 @@ botStartTime = time.time()
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
 
-import re
-from pymongo import MongoClient
-from fuzzywuzzy import process
-from pyrogram import Client, filters
-
-# MongoDB সংযোগ
-client = MongoClient("mongodb://localhost:27017/")
-db = client["bot_db"]
-collection = db["files"]
-
-# ইনপুট পরিষ্কার করার ফাংশন
-def clean_input(query):
-    query = re.sub(r"[^\w\s]", "", query)  # বিশেষ চিহ্ন বাদ দিন
-    query = re.sub(r"\s+", " ", query).strip()  # অপ্রয়োজনীয় স্পেস বাদ দিন
-    return query
-
-# সার্চ ফাংশন (Regex + Fuzzy Matching)
-def search_movie(query):
-    query = clean_input(query)  
-    results = collection.find({"title": {"$regex": query, "$options": "i"}})
-
-    titles = [result["title"] for result in results]
-    
-    # যদি মিলে না তাহলে Fuzzy Matching ব্যবহার করুন
-    if not titles:
-        all_titles = [doc["title"] for doc in collection.find()]
-        best_match = process.extractOne(query, all_titles)
-        return [best_match[0]] if best_match and best_match[1] > 70 else ["No results found!"]
-    
-    return titles
-
-# **কোনো কমান্ড ছাড়া সরাসরি সার্চ কাজ করবে**
-@Client.on_message(filters.text & filters.private)
-async def auto_search_handler(client, message):
-    user_query = message.text.strip()
-    
-    # ইউজার যদি শুধু "hi", "hello" টাইপ করে, তাহলে সার্চ করবে না
-    if len(user_query) < 3:
-        return
-
-    results = search_movie(user_query)
-    response = "\n".join(results)
-    
-    await message.reply(f"🔎 **Search Results:**\n{response}")
-
-
-
 
 async def Deendayal_start():
     print('\n')
@@ -148,3 +101,49 @@ if __name__ == '__main__':
         loop.run_until_complete(Deendayal_start())
     except KeyboardInterrupt:
         logging.info('Service Stopped Bye 👋')
+
+import re
+from pymongo import MongoClient
+from fuzzywuzzy import process
+from pyrogram import Client, filters
+
+# MongoDB সংযোগ
+client = MongoClient("mongodb://localhost:27017/")
+db = client["bot_db"]
+collection = db["files"]
+
+# ইনপুট পরিষ্কার করার ফাংশন
+def clean_input(query):
+    query = re.sub(r"[^\w\s]", "", query)  # বিশেষ চিহ্ন বাদ দিন
+    query = re.sub(r"\s+", " ", query).strip()  # অপ্রয়োজনীয় স্পেস বাদ দিন
+    return query
+
+# সার্চ ফাংশন (Regex + Fuzzy Matching)
+def search_movie(query):
+    query = clean_input(query)  
+    results = collection.find({"title": {"$regex": query, "$options": "i"}})
+
+    titles = [result["title"] for result in results]
+    
+    # যদি মিলে না তাহলে Fuzzy Matching ব্যবহার করুন
+    if not titles:
+        all_titles = [doc["title"] for doc in collection.find()]
+        best_match = process.extractOne(query, all_titles)
+        return [best_match[0]] if best_match and best_match[1] > 70 else ["No results found!"]
+    
+    return titles
+
+# **কোনো কমান্ড ছাড়া সরাসরি সার্চ কাজ করবে**
+@Client.on_message(filters.text & filters.private)
+async def auto_search_handler(client, message):
+    user_query = message.text.strip()
+    
+    # ইউজার যদি শুধু "hi", "hello" টাইপ করে, তাহলে সার্চ করবে না
+    if len(user_query) < 3:
+        return
+
+    results = search_movie(user_query)
+    response = "\n".join(results)
+    
+    await message.reply(f"🔎 **Search Results:**\n{response}")
+
